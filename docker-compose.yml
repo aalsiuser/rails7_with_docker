@@ -6,8 +6,12 @@ services:
       - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: root
-    # env_file:
-    #   - ./env/postgres.env # you can also define env variables like this.
+  redis:
+    image: "redis:7-alpine"
+    ports:
+      - 6379
+    volumes:
+    - ./tmp/redis_data:/var/lib/redis/data
   rails:
     build: ./ 
     ports:
